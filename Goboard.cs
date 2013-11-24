@@ -23,9 +23,6 @@ namespace Go_WinApp
 	}
 
 
-	/**
-	 * ZZ ZZZZZ
-	 */
 	public class GoBoard : System.Windows.Forms.Form
 	{
 		string [] strLabels; // {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t"};
@@ -47,7 +44,7 @@ namespace Go_WinApp
 		Pen penGrid, penStoneW, penStoneB,penMarkW, penMarkB;
 		Brush brStar, brBoard, brBlack, brWhite, m_brMark;
 	
-        // ZZZZ ZZZZZZZZZ
+
         int nFFMove = 10;   //一次恢复10个棋子. 
         int nRewindMove = 10;  // 没用过; 
 
@@ -65,14 +62,7 @@ namespace Go_WinApp
 
 		public GoBoard(int nSize)
 		{
-			//
-			// ZZZZZZZZ ZZZ ZZZZZZZ ZZZZ ZZZZZZZZ ZZZZZZZ
-			//
 			InitializeComponent();
-
-			//
-			// ZZZZ: ZZZ ZZZ ZZZZZZZZZZZ ZZZZ ZZZZZ ZZZZZZZZZZZZZZZZZZZ ZZZZ
-			//
 
 			this.nSize = nSize;  //当前棋盘大小
 
@@ -99,10 +89,7 @@ namespace Go_WinApp
 			gameTree = new GoTree();
 		}
 
-		/// <ZZZZZZZ>
-		///    ZZZZZZZZ ZZZZZZ ZZZ ZZZZZZZZ ZZZZZZZ - ZZ ZZZ ZZZZZZ
-		///    ZZZ ZZZZZZZZ ZZ ZZZZ ZZZZZZ ZZZZ ZZZ ZZZZ ZZZZZZ.
-		/// </ZZZZZZZ>
+		/// 初始化啊
 		private void InitializeComponent()
 		{
             this.Open = new System.Windows.Forms.Button();
@@ -114,7 +101,7 @@ namespace Go_WinApp
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // ZZZZ
+            // open
             // 
             this.Open.Location = new System.Drawing.Point(445, 88);
             this.Open.Name = "Open";
@@ -123,7 +110,7 @@ namespace Go_WinApp
             this.Open.Text = "open";
             this.Open.Click += new System.EventHandler(this.Open_Click);
             // 
-            // ZZZZ
+            // save
             // 
             this.Save.Location = new System.Drawing.Point(509, 88);
             this.Save.Name = "Save";
@@ -132,7 +119,7 @@ namespace Go_WinApp
             this.Save.Text = "save";
             this.Save.Click += new System.EventHandler(this.Save_Click);
             // 
-            // ZZZZZZ
+            // rewind
             // 
             this.Rewind.Location = new System.Drawing.Point(509, 56);
             this.Rewind.Name = "Rewind";
@@ -141,7 +128,7 @@ namespace Go_WinApp
             this.Rewind.Text = "<<";
             this.Rewind.Click += new System.EventHandler(this.Rewind_Click);
             // 
-            // ZZZZZZZ
+            // forward
             // 
             this.Forward.Location = new System.Drawing.Point(445, 24);
             this.Forward.Name = "Forward";
@@ -150,7 +137,7 @@ namespace Go_WinApp
             this.Forward.Text = ">";
             this.Forward.Click += new System.EventHandler(this.Forward_Click);
             // 
-            // ZZZZ
+            // back
             // 
             this.Back.Location = new System.Drawing.Point(509, 24);
             this.Back.Name = "Back";
@@ -159,7 +146,7 @@ namespace Go_WinApp
             this.Back.Text = "<";
             this.Back.Click += new System.EventHandler(this.Back_Click);
             // 
-            // ZZZZZZZZ
+            // fforward
             // 
             this.FForward.Location = new System.Drawing.Point(445, 56);
             this.FForward.Name = "FForward";
@@ -168,7 +155,7 @@ namespace Go_WinApp
             this.FForward.Text = ">>";
             this.FForward.Click += new System.EventHandler(this.FForward_Click);
             // 
-            // ZZZZZZZ1
+            // textbox1
             // 
             this.textBox1.Location = new System.Drawing.Point(447, 128);
             this.textBox1.Multiline = true;
@@ -178,8 +165,8 @@ namespace Go_WinApp
             this.textBox1.Text = "please oepn a .sgf file to view, or just play on the board";
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // ZZZZZZZ
-            // 
+            // add to  controls and others
+           // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(581, 478);
@@ -292,8 +279,7 @@ namespace Go_WinApp
 			return p;
 		}
 
-		//ZZ ZZZ ZZ Z ZZZZZZZZ ZZZZZ (Z,Z) ZZ ZZZZZZ ZZZZZZ ZZZ ZZZZZZZZZ ZZ 
-		//ZZ ZZZZZ ZZZZZ Z. (Z.Z. ZZZZZZ 1/3 ZZ ZZZZZZZZZZZZZZ
+		//判断到达一定区域内才能下子
 		private Boolean closeEnough(Point p, int x, int y)
 		{
 			if (x < rGrid.X+nUnitGridWidth*p.X-nUnitGridWidth/3 ||
@@ -306,11 +292,7 @@ namespace Go_WinApp
 			else 
 				return true;
 		}
-        /// <ZZZZZZZ>
-        /// 
-        /// </ZZZZZZZ>
-        /// <ZZZZZ ZZZZ="ZZZZZZ"></ZZZZZ>
-        /// <ZZZZZ ZZZZ="Z"></ZZZZZ>
+        /// 下子的处理函数
 		private void MouseUpHandler(Object sender,MouseEventArgs e)
 		{
 			Point p;
@@ -392,12 +374,7 @@ namespace Go_WinApp
 		}
 
 		/*
-		 * ZZZZ ZZZ ZZZZ ZZ ZZZZ ZZZ ZZZZ ZZZZZZZZZ ZZ ZZZZ ZZZZZZ ZZZZ ZZZZ ZZ ZZZZZZ. 
-		 * ZZZZ ZZ ZZ:
-		 * 	1. ZZZZZZ ZZZ ZZZZZZZ ZZZZ ZZZZ ZZZ ZZZZZ
-		 *  1.1 ZZZZ ZZZZZZ ZZZ "ZZZZZZZZ" ZZZZZZZZZZ
-		 *	2. store the stones got killed by current move
-		 *  3. ZZZZZZZZZZ ZZZ ZZZ "ZZZZZZZZ"
+		 * 撤销操作
 		 */
 		public void playPrev(GoMove gm)
 		{
@@ -433,7 +410,7 @@ namespace Go_WinApp
 		}
 
 		/**
-		 * ZZZZZZZZ ZZZ ZZZZZZZ ZZZZ, ZZZZ ZZZZZZZ ZZZ ZZZZZZZ ZZZZZ ZZ ZZZ ZZZZZ
+		 * 全更新画
 		 */
 		private void optRepaint()
 		{
@@ -451,7 +428,7 @@ namespace Go_WinApp
 		}
 
 		/*
-		 * ZZZZZZZ ZZZZ ZZZ ZZZZ ZZ ZZZ ZZZZZ ZZZZZZZ 
+		 * 重画一个格子
 		 */
 		void repaintOneSpotNow(Point p)
 		{
@@ -505,7 +482,7 @@ namespace Go_WinApp
 		}
 
 		/**
-		 * ZZZZZZ ZZZ ZZZZ ZZZZZ ZZZ ZZZZZ ZZZZ ZZZZ ZZZ ZZZZZ.
+		 * 死掉的收集起来,以后有用
 		 */
 		void doDeadGroup(StoneColor c) 
 		{
@@ -526,7 +503,7 @@ namespace Go_WinApp
 
 
 		/**
-		 * ZZZZZZZZZ ZZZ ZZZZZZZ ZZ ZZZ ZZZZZ, ZZZZZZZZ ZZZZ ZZZ ZZZZZ.
+		 * 递归计算气
 		 */
 		int calcLiberty(int x, int y, StoneColor c) 
 		{
